@@ -1,4 +1,46 @@
-window.addEventListener("load", () => {
+const sendToDB = document.getElementById("new-task-submit");
+sendToDB.addEventListener("click", execFetch)
+
+const showDB = (data) => {
+  console.log(data);
+  let body = "";
+  for (let i = 0; i < data.length; i++) {
+    body += `<tr><td>${data[i].manga}</td></tr>`;
+  }
+  document.getElementById("dbdata").innerHTML = body;
+};
+
+function addToDatabase() {
+  const manga = document.getElementById("new-task-input");
+  console.log(manga.value);
+  const obj = { manga: manga.value };
+  return obj;
+}
+
+
+let url = "http://localhost:3000/";
+
+function execFetch() {
+  fetch((url), {
+      method: "POST",
+      body: JSON.stringify(addToDatabase()),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8",
+      },
+  })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+}
+
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => showDB(data))
+  .catch(error => console.log(error))
+
+
+
+/*window.addEventListener("load", () => {
   const form = document.querySelector("#new-task-form");
   const input = document.querySelector("#new-task-input");
   const list_elem = document.querySelector("#mangas");
@@ -72,45 +114,4 @@ window.addEventListener("load", () => {
     });
   });
 });
-
-        /*const sendToDB = document.getElementById("new-task-input");
-        sendToDB.addEventListener("click", execFetch);
-
-        let url = "http://localhost:3000/";
-
-        function execFetch() {
-            fetch((url), {
-                method: "POST",
-                body: JSON.stringify(addToDatabase()),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                },
-            })
-                // Converting to JSON
-                .then((response) => response.json())
-                .then((json) => console.log(json));
-        }
-
-        fetch(url)
-            .then(response => response.json())
-            .then(data => showDB(data))
-            .catch(error => console.log(error)
-
-            )
-
-        const showDB = (data) => {
-            console.log(data)
-            let body = ""
-            for (let i = 0; i < data.length; i++) {
-                body += `<tr><td>${data[i].manga}</td></tr>`
-            }
-            document.getElementById("dbdata").innerHTML = body;
-        }
-
-
-        function addToDatabase(manga) {
-            const manga = document.getElementById("new-task-input");
-            console.log(manga.value);
-            const obj = { manga: manga.value }
-            return obj
-        }*/
+*/

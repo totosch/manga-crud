@@ -1,3 +1,96 @@
-body {
-    background-color: #222;
+:root {
+	--bg: #222;
+	--input: #1F2937;
+	--blue: #8781e0;
+    --title: #f7beba;
 }
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Avantgarde", sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	color: #FFF;
+	background-color: var(--bg);
+}
+
+header {
+	padding: 2rem 1rem;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+header h1{ 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	font-size: 2.2rem;
+	font-weight: 300;
+	color: var(--title);
+	margin-bottom: 1.5rem;
+}
+
+#new-task-form {
+	display: flex;;
+}
+
+input, button {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
+}
+
+#new-task-input {
+	flex: 1 1 0%;
+	background-color: var(--input);
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-right: 1rem;
+	color: var(--light);
+	font-size: 1.25rem;
+}
+
+
+#new-task-submit {
+	color: var(--pink);
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: var(--blue);
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+
+main {
+    display: flex;
+    justify-content: center;
+	margin: 0 auto; 
+}
+
+h2 {
+    color: #b3f3c1;
+    font-size: 1.5rem;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+

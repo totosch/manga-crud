@@ -5,31 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toto's manga checklist</title>
+    <title>Toto's Mangas </title>
     <link rel="stylesheet" href="main.css" />
     <script src="main.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1>Toto's manga checklist</h1>
+        <h1>Toto's Manga List</h1>
         <form id="new-task-form">
-            <input type="text" id="new-task-input" placeholder="Add manga here!">
-            <input type="submit" id="new-task-submit" value="Add manga">
+            <input type="text" id="new-task-input" placeholder="Add Manga Here!">
+            <input type="button" id="new-task-submit" value="Add Manga!">
         </form>
     </header>
     
     <main>
         <section class="task-list">
-            <h2>Mangas</h2>
+            <h2 id ="h2">Mangas</h2>
             <div id="mangas">
                 <div class="manga-list">
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Manga name</th>
-                            </tr>
-                        </thead>
                         <tbody id="dbdata">
                         </tbody>
                     </table>

@@ -57,14 +57,12 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-//create tabl
-
 
 function addToDatabase(manga) {
   sql = "INSERT INTO manga (manga) VALUES (?)";
   db.run(sql, [manga], (err) => {
     if (err) return console.error(err.message);
-    console.log("connection successful");
+    console.log("added to db successfuly");
   });
 }
 

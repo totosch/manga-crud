@@ -38,6 +38,7 @@ window.addEventListener("load", () => {
     const task_edit_elem = document.createElement("button");
     task_edit_elem.classList.add("edit");
     task_edit_elem.innerText = "Edit";
+    
 
     //creo un boton, le pongo de clase edit y le escribo dentro de el, el texto "Delete"
     const task_delete_elem = document.createElement("button");

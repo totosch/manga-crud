@@ -38,26 +38,18 @@ app.post("/", function (req, res) {
   console.log(req.body.manga);
 });
 
-/*
-app.put("/", function (req, res) {
-  const manga_update = req.body.manga;
-  const id_update = req.body.id;
-  updateDatabase(id, manga);
-  console.log(req.body.id, req.body.manga);
-});
 
 app.delete("/", function (req, res) {
   const id_delete = req.body.id;
   deleteFromDatabase(id_delete);
 })
 
-*/
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-
+//POST
 function addToDatabase(manga) {
   sql = "INSERT INTO manga (manga) VALUES (?)";
   db.run(sql, [manga], (err) => {
@@ -66,6 +58,7 @@ function addToDatabase(manga) {
   });
 }
 
+//GET
 function showDatabase() {
   return new Promise((resolve, reject) => {
     db.all("SELECT * FROM manga", (err, rows) => {
@@ -75,15 +68,7 @@ function showDatabase() {
   });
 }
 
-/*
-function updateDatabase(id, manga){
-  sql = "UPDATE manga SET manga = ? WHERE id = ?";
-  db.run(sql, [id, manga], (err) => {
-    if (err) return console.error(err.message);
-    console.log("updating was successful");
-  })
-}
-
+//DELETE
 function deleteFromDatabase(id){
   sql = "DELETE FROM manga WHERE id = ?"
   db.run(sql, [id], (err) => {
@@ -92,4 +77,3 @@ function deleteFromDatabase(id){
   })
 }
 
-*/

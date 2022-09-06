@@ -84,13 +84,6 @@ h2 {
     align-items: center;
 }
 
-
-
-
-
-
-
-
-
-
-
+#button_delete {
+	background-color: crimson;
+}

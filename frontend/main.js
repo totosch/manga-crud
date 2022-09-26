@@ -2,6 +2,9 @@
 
 let url = "http://localhost:3000/";
 
+
+
+
 //post functions
 
 const sendToDB = document.getElementById("new-task-submit");
@@ -26,16 +29,23 @@ function execFetch() {
     .then((json) => console.log(json));
 }
 
+
+
+
+
 // get functions
 
 const showDB = (data) => {
   console.log(data);
-  let body = "";
   for (let i = 0; i < data.length; i++) {
-    body += `<tr><td>${data[i].manga}</td></tr>`;
-    body += createDeleteButtonID(data[i].id);
+    const row = document.createElement("tr")
+    const rowContent = document.createElement("td")
+    rowContent.innerHTML = data[i].manga;
+    row.appendChild(rowContent)
+    row.appendChild(createDeleteButtonID(i));
+    document.getElementById("dbdata").appendChild(row);
+
   }
-  document.getElementById("dbdata").innerHTML = body;
 };
 
 fetch(url)
@@ -43,48 +53,35 @@ fetch(url)
   .then((data) => showDB(data))
   .catch((error) => console.log(error));
 
-//delete functions wip
-//const idFromDeleteButton = document.getElementsByClassName("button_delete").id;
 
-//crea boton con class "button_delete" y con un id numerico diferente para cada uno
-//y lo pongo en el body
+
+
+
+//delete functions wip
+
+
+const deleteManga = (e) => {
+  const idToDelete = e.target.id
+  console.log({idToDelete})
+  alert(`el id de este boton es: ${idToDelete}`)
+  //execFetchDelete(idToDelete);
+};
+
 
 function createDeleteButtonID(id) {
-  const newDeleteButton = document.createElement("button");
+  const newDeleteButton = document.createElement("input");
   newDeleteButton.type = "button";
+  newDeleteButton.className = 'button_delete';
   newDeleteButton.id = `${id}`;
-  newDeleteButton.value = "deletetete";
+  newDeleteButton.value = "Delete";
+  newDeleteButton.addEventListener("click", deleteManga);
+  return newDeleteButton;  
 }
 
-
-//const deleteToDB = document.getElementById(`${id}`)
-//deleteToDB.addEventListener("click", execFetchDelete);
-
-//tengo que buscar manera de acceder al id UNICO de un boton para que cuando lo aprete
-//segun el id que tiene, uso ese mismo id para eliminar de la db
-
-
-
-
-
-
-
-
-
-//deleteToDB.addEventListener("click", execFetchDelete);
-
-
-
-function deleteFromDatabase() {
-  const id = document.getElementsByClassName("button_delete").id;
-  const object = { id: id.value };
-  return object;
-}
-
-function execFetchDelete() {
+function execFetchDelete(id) {
   fetch(url, {
     method: "DELETE",
-    body: JSON.stringify(deleteFromDatabase()),
+    body: JSON.stringify({ id }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -92,3 +89,29 @@ function execFetchDelete() {
     .then((response) => response.json())
     .then((json) => console.log(json));
 }
+
+
+
+
+
+
+
+
+
+/*
+function deleteFromDatabase() {
+  const id = document.getElementsByClassName("button_delete").id;
+  const object = { id: id.value };
+  return object;
+}
+
+
+function createDeleteButtonID(id) {
+  var newDeleteButton = document.createElement("button");
+  newDeleteButton.type = "button";
+  newDeleteButton.id = `${id}`;
+  newDeleteButton.value = "deletetete";
+  newDeleteButton.onclick;
+}
+
+*/

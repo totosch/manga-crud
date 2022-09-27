@@ -42,7 +42,7 @@ const showDB = (data) => {
     const rowContent = document.createElement("td")
     rowContent.innerHTML = data[i].manga;
     row.appendChild(rowContent)
-    row.appendChild(createDeleteButtonID(i));
+    row.appendChild(createDeleteButtonID(data[i].id));
     document.getElementById("dbdata").appendChild(row);
 
   }
@@ -57,14 +57,14 @@ fetch(url)
 
 
 
-//delete functions wip
+//delete functions
 
 
 const deleteManga = (e) => {
   const idToDelete = e.target.id
   console.log({idToDelete})
   alert(`el id de este boton es: ${idToDelete}`)
-  //execFetchDelete(idToDelete);
+  execFetchDelete(idToDelete);
 };
 
 
@@ -78,6 +78,7 @@ function createDeleteButtonID(id) {
   return newDeleteButton;  
 }
 
+
 function execFetchDelete(id) {
   fetch(url, {
     method: "DELETE",
@@ -89,29 +90,3 @@ function execFetchDelete(id) {
     .then((response) => response.json())
     .then((json) => console.log(json));
 }
-
-
-
-
-
-
-
-
-
-/*
-function deleteFromDatabase() {
-  const id = document.getElementsByClassName("button_delete").id;
-  const object = { id: id.value };
-  return object;
-}
-
-
-function createDeleteButtonID(id) {
-  var newDeleteButton = document.createElement("button");
-  newDeleteButton.type = "button";
-  newDeleteButton.id = `${id}`;
-  newDeleteButton.value = "deletetete";
-  newDeleteButton.onclick;
-}
-
-*/
